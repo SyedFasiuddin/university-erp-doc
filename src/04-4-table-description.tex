@@ -1,0 +1,170 @@
+\subsection{Table Description}
+
+\subsubsection{Departments}
+
+There are various departments in a university and this table is used to keep
+record of all those departments with their short codes and ID's of respective
+HOD's.
+
+\begin{lstlisting}[basicstyle=\small]
+     Column      |          Type          | Nullable
+-----------------+------------------------+----------
+ full_name       | character varying(100) | not null
+ short_code      | character varying(5)   | not null
+ hod_lecturer_id | character varying(15)  |
+\end{lstlisting}
+
+\subsubsection{Students}
+
+The students table is used to stores the detail of every students enrolled in
+various departments across the university, details such as their name, fathers
+name, phone number, their previous academic details etc are stored in this
+table.
+
+\begin{lstlisting}[basicstyle=\small]
+       Column        |          Type          | Nullable
+---------------------+------------------------+----------
+ usn                 | character varying(15)  | not null
+ name                | character varying(30)  |
+ fathers_name        | character varying(30)  |
+ mothers_name        | character varying(30)  |
+ dob                 | date                   |
+ address             | character varying(255) |
+ phone_num           | numeric(10,0)          |
+ email               | character varying(30)  |
+ department          | character varying(5)   | not null
+ last_qualification  | character varying(50)  |
+ qualified_from      | character varying(255) |
+ passing_year        | date                   |
+ marks_scored        | numeric(3,0)           |
+ percentage          | numeric(4,2)           |
+ cet_rank            | integer                |
+ neet_rank           | integer                |
+ aadhar_number       | numeric(12,0)          |
+ bank_account_number | numeric(12,0)          |
+\end{lstlisting}
+
+\newpage
+\subsubsection{Lecturers}
+
+The lecture table keeps record of details of lectures of various departments,
+it is used to keeps track of their salaries as well.
+
+\begin{lstlisting}[basicstyle=\small]
+       Column        |          Type          | Nullable
+---------------------+------------------------+----------
+ lecturer_id         | character varying(15)  | not null
+ name                | character varying(30)  |
+ fathers_name        | character varying(30)  |
+ spouse_name         | character varying(30)  |
+ phone_num           | numeric(10,0)          |
+ dob                 | date                   |
+ email               | character varying(30)  |
+ address             | character varying(255) |
+ qualification       | character varying(50)  |
+ subject_expertise   | character varying(50)  |
+ department          | character varying(5)   |
+ experience          | numeric(3,1)           |
+ aadhar_number       | numeric(12,0)          |
+ pan_number          | character varying(10)  |
+ bank_account_number | numeric(15,0)          |
+ pay_scale           | integer                |
+ basic_pay           | integer                |
+ gross_salary        | integer                |
+ deduction           | integer                |
+ net_salary          | integer                |
+\end{lstlisting}
+
+\subsubsection{Students leave}
+
+This table is used to keep records of the requests made by students for leave.
+As a student requests for leave it is inserted into the table but the leave is
+not assigned immediately; instead it is initially marked as not assigned; the
+HOD of the department to which the student belongs is then requested to approve
+the leave for the students.
+
+\begin{lstlisting}[basicstyle=\small]
+   Column   |         Type           | Nullable | Default
+------------+------------------------+----------+---------
+ department | character varying(5)   | not null |
+ usn        | character varying(15)  | not null |
+ date       | date                   | not null |
+ assigned   | boolean                |          | false
+\end{lstlisting}
+
+\newpage
+\subsubsection{Lecturer leave}
+
+This table is used to keep records of the requests made by lecturers for leave.
+As a lecturer requests for leave it is inserted into the table but the leave is
+not assigned immediately; instead it is initially marked as not assigned; the
+HOD of the department to which the lecturer belongs to, is requested to approve
+the leave for the lecturer.
+
+\begin{lstlisting}[basicstyle=\small]
+   Column    |         Type           | Nullable | Default
+-------------+------------------------+----------+---------
+ department  | character varying(5)   | not null |
+ lecturer_id | character varying(15)  | not null |
+ date        | date                   | not null |
+ assigned    | boolean                |          | false
+\end{lstlisting}
+
+\subsubsection{Student attendance}
+
+This table is used to keep track of attendance of the students per subject or
+class. The lecture is the one who adds the attendance of the student.
+
+\begin{lstlisting}[basicstyle=\small]
+    Column    |         Type          | Nullable
+--------------+-----------------------+----------
+ usn          | character varying(15) | not null
+ absent_date  | date                  | not null
+ subject_code | character varying(10) | not null
+\end{lstlisting}
+
+\subsubsection{Lecturer attendance}
+
+This table is used to keep track of the attendance of the lecturer. The head of
+department to which the lecturer belongs to, is the only one who can adds this
+information into the system.
+
+\begin{lstlisting}[basicstyle=\small]
+   Column    |         Type          | Nullable
+-------------+-----------------------+----------
+ lecturer_id | character varying(15) | not null
+ absent_date | date                  | not null
+\end{lstlisting}
+
+\newpage
+\subsubsection{Subjects}
+
+This is the table that stores the all of the necessary information about the
+different subjects that are across various departments in university. It holds
+information about subjects, its name, its short code, who teaches the subject,
+to which department the subject belongs to and the semester in which students
+will study the subject.
+
+\begin{lstlisting}[basicstyle=\small]
+    Column    |         Type          | Nullable
+--------------+-----------------------+----------
+ subject_code | character varying(10) | not null
+ subject_name | character varying(50) | not null
+ taught_by    | character varying(15) | not null
+ department   | character varying(5)  | not null
+ semester     | numeric(1,0)          | not null
+\end{lstlisting}
+
+\subsubsection{Passwords}
+
+The passwords table holds the ID and passwords of all the individuals that are
+in a university, the students and all the lectures get their own unique ID and
+a default password which is the same as their ID, all the individuals can choose
+to change their passwords anytime they desire.
+
+\begin{lstlisting}[basicstyle=\small]
+  Column  |          Type          | Nullable
+----------+------------------------+----------
+ id       | character varying(15)  | not null
+ password | character varying(255) |
+\end{lstlisting}

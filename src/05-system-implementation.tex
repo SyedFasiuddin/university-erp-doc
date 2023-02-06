@@ -1,0 +1,96 @@
+\section{SYSTEM IMPLEMENTATION}
+The proposed application is in its entirety is very huge and so it is broken
+down into smaller modules for better code management and ease of understanding,
+and also for separation of concerns of different duties to different modules.
+
+The different modules handle different jobs, and they are not concerned with
+how other module performs; each individual module is completely independent from
+each other and perform their own designated tasks.
+
+\subsection{Courses and Subject Management Module}
+As the main goal of every university is to provide a quality education, the
+individuals should only focus on that, this module would ease the activity of
+handling courses and subjects. The system will help the admin assign the
+subjects per course, assign subjects to professors, decide on the syllabus of
+individual subjects etc.
+
+This module is responsible for handling all of the
+course and subject related details. Only the admin is authorized to interact
+with this module to make any changes. Without authorization, this module will
+never be touch, as the request to make any changes would be stopped at the time
+of authorization.
+
+\subsection{Information Management Module}
+The student and faculty information management cost a lot of time and effort to
+do, plus the added costs when we need to know details of a particular student or
+faculty, we have to sit and manually find the necessary information. While
+this modules will do the storage and retrieval’s of the required details of
+students and faculty information across various departments, the admin would
+just fed the information to the system.
+
+The information can only be fed into the system by the authorized admin, and the
+information can only be accessed by the individuals who are authorized. Every
+student and faculty is authorized to only access their own information and
+unauthorized to access any other information about any other student or faculty
+or any other staff members
+
+\subsection{Attendance Monitoring Module}
+This module enables handling of attendance of students and professors. There are
+different ways in which this module is accessed such as: Both the students and
+professors can access this module to check on their attendance, of course with
+authorization.
+
+The professors are the ones that are authorized to add attendance of students
+that are enrolled into those subjects that the professor teaches.  The students
+are only authorized to look at their attendance and not the attendance of other
+students. When it comes to attendance of professors, only the head of department
+to which they belong is authorized to add their attendance and every professor
+is authorized to look at only their own attendance.
+
+\subsection{Grading System Management Module}
+Alike attendance, each professors is in charge of updating the marks of all the
+students enrolled in his subjects. The professors can upload marks of internal
+assessment tests and external assessment tests, this module is smart enough
+that it understands that marks are being entered and update the “passed” status
+of every student. The interesting part of this module is that only the
+professors who teach are authorized to update the marks.
+
+\subsection{Authorization Module}
+
+The authorization module is the main part of this entire system to protect the
+privacy and authenticity of information available within the system.
+Authorization enables us to determine who is logging in and depending on that we
+can provide for different UI for admin, students and professors. Apart from
+providing different pages for UI, this module enables us to authorize who is
+requesting for what information, and provide those information or appropriate
+error messages depending on whether they are authorized or not.
+
+We here make use of JWT (Json Web Tokens) for authorization, a token is created
+when the user first logs in with their user ID and password, and sent to the
+client which then stores it and send it along with every request that the client
+makes on behalf of the user. This token is generated with the users password,
+users ID and a secret key that only the server knows. On every request the
+client makes this token is expected form it, if the token doesn't exists then
+the request is terminated as unauthorized, if the token exists then it is first
+decomposed back and user ID is known, this user ID is then used to determine if
+the user is authorized to access some particular information that is requested
+by the user, if he is then the authorization is completed and appropriate module
+is handed over the control of what to do and what to return for a particular
+request, if the if he is not authorized then the request is terminated there
+itself with appropriate message.
+
+\newpage
+All of these different module help in gathering data from different sources and
+collects them in a central place. Different individual are assigned and are
+responsible to update different information about different aspects of the
+university, thus eliminating the need of people to keep book records. The added
+benefit of this is that students can log in and check their details, courses
+and marks and know how well they are performing in different subjects.
+Professors can log in and look at how well all the students performed in their
+subjects and adjust their methodology to better suit the students.
+
+These different modules interact with each other on the server and provide an
+abstraction and hide the implementation details on how they work all while
+providing us with an experience par from better. These different module of our
+system work by allowing only authorized individuals to perform their part in a
+bigger system.

@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+
+\usepackage[
+    a4paper,
+    top=1in,
+    bottom=1in,
+    right=1in,
+    left=1.25in,
+    headheight=12pt
+]{geometry}
+\usepackage{setspace}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[dvipsnames]{xcolor}
+
+\lhead{kbn.edu: The ERP solution}
+\rhead{}
+\cfoot{}
+\lfoot{
+    Department of Computer Science and Engineering\\
+    Faulty of Engineering and Technology, Kalaburagi.
+}
+\rfoot{\thepage}
+
+\makeatletter
+\def\headrule{{
+  \if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
+  \hrule\@height\footrulewidth\@width\headwidth\vskip1pt%
+  \hrule\@height\headrulewidth\@width\headwidth\vskip-\headrulewidth\vskip-4pt
+}}
+%
+\def\footrule{{%
+  \if@fancyplain\let\footrulewidth\plainfootrulewidth\fi
+  \vskip-\footruleskip\vskip-\footrulewidth
+  \hrule\@height\headrulewidth\@width\headwidth\vskip1pt%
+  \hrule\@height\footrulewidth\@width\headwidth\vskip\footruleskip
+}}
+\makeatother
+\pagestyle{fancy}
+%
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{1.5pt}
+
+\begin{document}
+
+    \thispagestyle{empty}
+    \onehalfspacing
+    \begin{titlepage}
+        \include{src/first}
+    \end{titlepage}
+    \thispagestyle{empty}
+    \include{src/certificate}
+    \thispagestyle{empty}
+    \include{src/acknowledgement}
+
+    \renewcommand{\contentsname}{Table Of Contents}
+    \setcounter{tocdepth}{2}
+    \thispagestyle{empty}
+    \tableofcontents
+
+    \include{src/abstract}
+    \cleardoublepage
+    \pagenumbering{arabic}
+    \include{src/01-introduction}
+    \include{src/02-system-analysis}
+    \include{src/03-system-requirements}
+    \include{src/04-system-design} % 4.1, 4.2, 4.3
+    \include{src/04-4-table-description} % 4.4
+    \include{src/05-system-implementation}
+    \include{src/06-interpretation-of-results}
+    \include{src/07-conclusion}
+    \include{src/08-references}
+
+\end{document}
